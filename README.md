@@ -3,6 +3,17 @@
 A production-ready **n8n orchestration layer** designed to eliminate lead decay by bridging the gap between high-intent data capture and AI-driven engagement.
 
 ## 🏗️ Architecture Overview
+### 🧠 System Logic Flow
+```mermaid
+graph TD
+    A[Tally.so Form Submission] -->|Webhook| B(n8n Orchestrator)
+    B --> C{Gemini 1.5 Pro Analysis}
+    C -->|High Intent| D[Personalized Response Draft]
+    C -->|General Query| E[Standard Resource Link]
+    D --> F[SMTP / Gmail Dispatch]
+    E --> F
+    B --> G[(Google Sheets Logging)]
+    F --> H[Lead Engagement < 10s]
 This workflow is built to handle sub-10-second response times for enterprise-grade intake forms.
 1. **Trigger**: Inbound Webhook from **Tally.so**.
 2. **Analysis**: **Google Gemini 1.5 Pro** performs real-time lead scoring and intent analysis.
